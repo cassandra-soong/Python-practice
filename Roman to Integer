@@ -1,0 +1,55 @@
+# Convert roman to integer [leetcode]
+
+class Solution(object):
+    def romanToInt(self, s):
+
+        dict = {
+
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        }
+
+        sum = 0
+
+        while len(s):      
+            if "IV" in s:
+                sub = dict["V"] - dict["I"]
+                sum += sub
+                s = s.replace("IV", "")
+
+            elif "IX" in s:
+                sub = dict["X"] - dict["I"]
+                sum += sub
+                s = s.replace("IX", "")
+
+            elif "XL" in s:
+                sub = dict["L"] - dict["X"]
+                sum += sub
+                s = s.replace("XL", "")
+
+            elif "XC" in s:
+                sub = dict["C"] - dict["X"]
+                sum += sub
+                s = s.replace("XC", "")
+
+            elif "CD" in s:
+                sub = dict["D"] - dict["C"]
+                sum += sub
+                s = s.replace("CD", "")
+
+            elif "CM" in s:
+                sub = dict["M"] - dict["C"]
+                sum += sub
+                s = s.replace("CM", "")  
+                
+            else:
+                for i in s:
+                    sum += dict[i]
+                break
+                
+        return sum

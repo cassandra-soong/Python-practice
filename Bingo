@@ -1,0 +1,81 @@
+# 5x5 Bingo game basic setup
+
+n = 5
+
+# player selects number on his turn
+# selected number will be marked with 0 
+
+def play(grid):
+    choice_row = int(input('row: '))
+    choice_column = int(input('column: '))
+    
+    if choice_row not in range(n+1) or choice_column not in range(n+1):
+        print("Invalid")
+    
+    else:
+        grid[choice_row][choice_column] = 0
+    
+    return grid
+    
+
+# check condition of win in one dimensional row
+
+def check(row):
+    for i in row:
+        if i != 0:
+            return False
+        else
+            status = True
+    return status
+
+
+# check condition of win in whole grid
+# person wins bingo if there are at least 5 lines won either horizontally, vertically or diagonally
+
+def win(grid):
+    win_count = 0
+    
+    # horizontal win
+    for row in grid:
+        if check(row) == False:
+            pass
+        else:
+            win_count += 1
+    
+    # vertical win
+    for row in range(1):
+        for column in range(n):
+            first = grid[row][column]
+            second = grid[row+1][column]
+            third = grid[row+2][column]
+            fourth = grid[row+3][column]
+            temp = [first, second, third, fourth]
+            
+            if check(temp) == False:
+                pass
+            else:
+                win_count += 1
+            
+            temp.clear()
+            
+    # diagonal win
+    for row im range(n-3):
+        for column in range(n-3):
+            first = grid[row][column]
+            second = grid[row+1][column+1]
+            third = grid[row+2][column+2]
+            fourth = grid[row+3][column+3]
+            temp = [first, second, third, fourth]
+            
+            if check(temp) == False:
+                pass
+            else:
+                win_count += 1
+            
+            temp.clear()
+
+    # final check
+    if win_count >= 5:
+        print("Congratulations!")
+    else:
+        print("Sorry!")

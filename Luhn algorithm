@@ -1,0 +1,32 @@
+# The Luhn algorithm is a checksum formula used to validate a variety of identification numbers 
+# such as credit card numbers
+
+# every second digit from the right is doubled
+# if the doubled value is greater than 9, then subtract 9 from the product
+# sum all digits and if divisible by 10 then the input is valid
+
+
+def luhn(x):
+    sum = 0
+    mul = 0
+
+    for j in range(len(x)-1, -1, -1):
+        if j % 2 == 0:
+            mul = 2 * int(x[j])
+            if mul > 9:
+                sub = mul - 9
+                sum += sub
+            else:
+                sum += mul
+        else:
+            sum += int(x[j])
+
+    print(sum)
+
+    if sum % 10 == 0:
+        return "Valid"
+    return "Invalid"
+
+
+# example 
+print(luhn("4539319503436467"))

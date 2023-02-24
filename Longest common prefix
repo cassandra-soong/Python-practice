@@ -2,10 +2,6 @@
 
 class Solution(object):
     def longestCommonPrefix(self, s):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
         
         common = ""
 

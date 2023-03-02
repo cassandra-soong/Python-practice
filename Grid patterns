@@ -1,0 +1,104 @@
+# Each of the following functions should work with all odd number of n
+
+
+# Grid 1 with the following pattern:
+# [1, 0, 1, 0, 1]
+# [0, 1, 0, 1, 0]
+# [1, 0, 1, 0, 1]
+# [0, 1, 0, 1, 0]
+# [1, 0, 1, 0, 1]
+
+def box(n):
+    grid = [[1]*n for i in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            if i % 2 == 0:
+                if j % 2 != 0:
+                    grid[i][j] = 0
+            else:
+                if j % 2 == 0:
+                    grid[i][j] = 0
+    return grid
+
+for rows in box(5):
+    print(rows)
+
+
+
+# Grid 2 with the following pattern:
+# [1, 2, 3, 4, 5]
+# [2, 3, 4, 5, 6]
+# [3, 4, 5, 6, 7]
+# [4, 5, 6, 7, 8]
+# [5, 6, 7, 8, 9]
+
+def grid2(n):
+    grid = [[1]*n for i in range(n)]
+
+    for row in range(n-1):
+        for column in range(n-1):
+            grid[row][column+1] = grid[row][column] + 1
+            grid[row+1][column] = grid[row][column] + 1
+
+    # last digit in bottom right
+    grid[n-1][n-1] = grid[n-1][n-2] + 1
+
+    return grid
+
+for j in grid2(5):
+    print(j)
+
+
+
+# Grid 3 with the following pattern:
+# [1, 2, 3, 4, 5]
+# [10, 9, 8, 7, 6]
+# [11, 12, 13, 14, 15]
+# [20, 19, 18, 17, 16]
+# [21, 22, 23, 24, 25]
+
+def grid3(n):
+    grid = [[0]*n for i in range(n)]
+
+    count = 1
+
+    for row in range(n):
+        for column in range(n):
+            if row % 2 == 0:
+                grid[row][column] += count
+
+            else:
+                grid[row][n - 1 - column] += count
+
+            count += 1
+
+    return grid
+
+for line in grid3(5):
+    print(line)
+
+
+
+# Grid 4 with the following pattern:
+# [1, 1, 1, 1, 1]
+# [0, 1, 1, 1, 1]
+# [0, 0, 1, 1, 1]
+# [0, 0, 0, 1, 1]
+# [0, 0, 0, 0, 1]
+
+def grid4(n):
+    grid = [[1] * n for i in range(n)]
+
+    count = 1
+
+    for row in range(1, n):
+        for column in range(count):
+            grid[row][column] = 0
+
+        count += 1
+
+    for line in grid:
+        print(line)
+
+grid4(5)

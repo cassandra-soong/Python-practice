@@ -1,0 +1,82 @@
+# 4x4 sudoku game to check winning conditions
+
+n = 4
+
+# create basic 4x4 grid
+def create_grid(n):
+    grid = [[0]*n for i in range(n)]
+
+
+# check winning condition for one dimensional part
+
+def check_sudo(sudo):
+    # check one dimension
+    for i in sudo:
+        if i in range(n+1):
+            if i != 0 and sudo.count(i) <= 1:
+                status = True
+            elif i == 0:
+                pass
+            else:
+                return False
+        else:
+            return False
+
+    return status
+
+
+# check winning condition for horizontal and vertical part
+
+def check_sudoku(sudoku):
+    # horizontal
+    for row in sudoku:
+        print(check_sudo(row))
+
+    # vertical
+    for row in range(1):
+        for column in range(n):
+
+            first = sudoku[row][column]
+            second = sudoku[row + 1][column]
+            third = sudoku[row + 2][column]
+            fourth = sudoku[row + 3][column]
+            temp = [first, second, third, fourth]
+
+            print(check_sudo(temp))
+            temp.clear()
+
+
+# check winning condition for each subgrid within the sudoku
+
+def check_subgrid(sudoku):
+    # subgrid 1 (top left)
+    temp1 = []
+    for row in range(2):
+        for column in range(2):
+            temp1.append(sudoku[row][column])
+
+    print(f'subgrid1: {check_sudo(temp1)}')
+
+    # subgrid 2 (top right)
+    temp2 = []
+    for row in range(2):
+        for column in range(2, n):
+            temp2.append(sudoku[row][column])
+
+    print(f'subgrid1: {check_sudo(temp2)}')
+
+    # subgrid 3 (bottom left)
+    temp3 = []
+    for row in range(2, n):
+        for column in range(2):
+            temp3.append(sudoku[row][column])
+
+    print(f'subgrid1: {check_sudo(temp3)}')
+
+    # subgrid 4 (bottom right)
+    temp4 = []
+    for row in range(2, n):
+        for column in range(2, n):
+            temp4.append(sudoku[row][column])
+
+    print(f'subgrid1: {check_sudo(temp4)}')

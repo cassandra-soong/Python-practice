@@ -1,4 +1,4 @@
-# 5x5 Bingo game basic setup
+# 5x5 Bingo game to check winning conditions
 
 n = 5
 

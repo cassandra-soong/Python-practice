@@ -1,0 +1,42 @@
+# Assuming the robot only has three possible movements: Left, Right, Advance
+# The robot is placed on a hypothetical infinite grid, facing a particular direction of North, East, South or West at a set (x,y) coordinates.
+# For example, the input string "RAALAL" means turn right, advance twice, turn left, advance and turn left. If the robot start at (7,3) facing North,
+# it should end up at (9,4) facing West.
+
+
+
+directions = {"N": [0,1], "E": [1,0], "S": [0,-1], "W": [-1,0]}
+
+def robot_move(robot, command):
+
+    for i in command:
+        curr_direction = directions[robot["facing"]]
+
+        if i == "A":
+            robot["pos"][0] += curr_direction[0]
+            robot["pos"][1] += curr_direction[1]
+            # north east south west doesnt change when advance
+
+        elif i == "R":
+            if robot["facing"] == "N":
+                robot["facing"] = "E"
+            elif robot["facing"] == "E":
+                robot["facing"] = "S"
+            elif robot["facing"] == "S":
+                robot["facing"] = "W"
+            elif robot["facing"] == "W":
+                robot["facing"] = "N"
+
+        elif i == "L":
+            if robot["facing"] == "N":
+                robot["facing"] = "W"
+            elif robot["facing"] == "E":
+                robot["facing"] = "N"
+            elif robot["facing"] == "S":
+                robot["facing"] = "E"
+            elif robot["facing"] == "W":
+                robot["facing"] = "S"
+
+    return f'Robot is at position {robot["pos"]} facing {robot["facing"]}'
+
+print(robot_move({"pos": [7,3], "facing": "N"}, "RAALAL"))
